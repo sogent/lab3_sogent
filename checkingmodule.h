@@ -3,6 +3,8 @@
 //
 #include <string>
 #include <iostream>
+#include <cmath>
+#include <iomanip>
 using namespace std;
 
 #ifndef LAB3_SOGENT_CHECKINGMODULE_H
@@ -18,6 +20,6 @@ float getInterestRate(int creditScore);
 void calcWithdraw(float& accountBalance, float WithdrawAmt);
 int getLoanMonths();
 int getCreditRating();
-float calcLoanAmount(float loanPrincipal, float interestRate, int loanTerm);
-void outputAccount(float& accountAmount);
+double calcLoanAmount(double loanPrincipal, double interestRate, double loanTerm);
+void accountSummary(float& accountAmount);
 

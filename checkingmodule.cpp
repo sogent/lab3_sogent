@@ -3,6 +3,8 @@
 //
 #include "checkingmodule.h"
 #include <iostream>
+#include <cmath>
+#include <iomanip>
 using namespace std;
 
 char mainMenu(){
@@ -62,6 +64,10 @@ float getValue(string userInput, float& upperLimit){
     }
 }
 
+void calcWithdraw(float& accountBalance, float WithdrawAmt){
+    accountBalance = accountBalance - WithdrawAmt;
+}
+
 float getInterestRate(int creditScore){
     float interestRate;
     if(creditScore <=500){
@@ -78,12 +84,8 @@ float getInterestRate(int creditScore){
     }
 }
 
-void calcWithdraw(float& accountBalance, float WithdrawAmt){
-    accountBalance = accountBalance - WithdrawAmt;
-}
-
 int getLoanMonths(){
-    int userLoanMonths;
+    float userLoanMonths;
     bool run=true;
     while(run){
         cout << "Please choose one of the following loan terms: "<<endl;
@@ -120,18 +122,18 @@ int getCreditRating(){
     }
 }
 
-float calcLoanAmount(float loanPrincipal, float interestRate, int loanTerm){
-    float loanAmount;
-
-    loanAmount=((loanPrincipal*(1+interestRate/12)), (loanTerm/12));
-
+double calcLoanAmount(double loanPrincipal, double interestRate, double loanTerm){
+    double loanAmount;
+    double baseNum = (1+interestRate/12);
+    double expNum = (loanTerm/12);
+    loanAmount=loanPrincipal*pow(baseNum, expNum);
     return loanAmount;
 }
 
-void outputAccount(float& accountAmount){
+void accountSummary(float& accountAmount){
     cout << "Account Summary: "<<endl;
-    cout << "$"<<accountAmount<<endl;
-
+    cout << "$"<<setprecision(2)<<fixed<<accountAmount<<endl;
+    cout<<endl;
 }
 
 
