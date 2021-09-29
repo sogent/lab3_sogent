@@ -52,9 +52,9 @@ int main(){
                 userLoan =calcLoanAmount(userLoanPrincipal, userInterestRate, userLoanTerm);
                 userInterestPercent=userInterestRate*100;
                 cout<<setw(30)<<"Loan Options Review"<<endl;
-                cout<<"Interest Rate: " <<right<<setw(24)<<userInterestPercent<<"%"<<endl;
-                cout<<"Principal: "<<right<<setw(24)<<"$"<<userLoanPrincipal<<endl;
-                cout<<"Loan Monthly Term: "<<setw(14)<<userLoanTerm<<" months"<<endl;
+                cout<<"Interest Rate: " <<right<<setw(24)<<setprecision(1)<<userInterestPercent<<"%"<<endl;
+                cout<<"Principal: "<<right<<setw(21)<<setprecision(2)<<fixed<<"$"<<userLoanPrincipal<<endl;
+                cout<<"Loan Monthly Term: "<<setw(14)<<setprecision(0)<<userLoanTerm<<" months"<<endl;
                 cout<<endl;
                 cout<<"Your total loan amount is: "<<setw(5)<<setprecision(2)<<fixed<<"$"<<userLoan<<endl;
                 cout<<endl;
