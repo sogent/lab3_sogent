@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../checkingmodule.h
+string
+-
+iostream
+-
+cmath
+-
+iomanip
+-
+
+/Users/sogent/CLionProjects/lab3-sogent/Lab03.cpp
+checkingmodule.h
+-
+iostream
+-
+string
+-
+cmath
+-
+iomanip
+-
+
