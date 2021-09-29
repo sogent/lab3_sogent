@@ -7,43 +7,46 @@
 #include <iomanip>
 using namespace std;
 
+//main menu function
 char mainMenu(){
     char userInput;
     bool run=true;
     while(run) {
-        cout << "Main Menu" << endl;
+        cout <<right<<setw(20)<< "Main Menu" << endl;
         cout << "Please enter one of the following: " << endl;
-        cout << "(D)eposit, (W)ithdraw, (L)oan, or (Q)uit: " << endl;
+        cout << "(D)eposit, (W)ithdraw, (L)oan, (S)ummary of Account, or (Q)uit: " << endl;
         cin >> userInput;
-        if(userInput=='D'||userInput=='W'||userInput=='L'||userInput=='Q'){
-            return userInput;
+        toupper(userInput);
+        if(userInput=='D'||userInput=='W'||userInput=='L'||userInput=='S'||userInput=='Q'){
+            return toupper(userInput);
         } else{
             cout<<"Invalid entry, please try again"<<endl;
         }
-
     }
 }
 
-float getValue(string userInput){
-    bool run =true;
-    float userDeposit;
-    while(run) {
+//obtains deposit value from user
+float getValue(string userInput) {
+    bool run = true;
+    float userDeposit = 0;
+    while (run) {
         cout << "How much would you like to deposit?" << endl;
         cin >> userDeposit;
-        if(userDeposit < 0){
-            cout << "Invalid entry. Amount must be greater than 0. Please try again"<<endl;
-        } else{
-            cout << "You have deposited: $" << userDeposit<<endl;
-            cout <<endl;
+        if (userDeposit < 0) {
+            cout << "Invalid entry. Amount must be greater than 0. Please try again" << endl;
+        } else {
+            cout << "You have deposited: $" << setprecision(2) << fixed << userDeposit << endl;
             return userDeposit;
         }
     }
 }
 
+//updates user account to reflect any deposits
 void deposit(float& userAccount, float userDeposit){
     userAccount=userAccount+userDeposit;
 }
 
+//obtains withdraw value from user, limits to within account range
 float getValue(string userInput, float& upperLimit){
     float userWithdrawAmt;
     bool run=true;
@@ -52,11 +55,15 @@ float getValue(string userInput, float& upperLimit){
         cout << "How much would you like to withdraw?" << endl;
         cin >> userWithdrawAmt;
         if(userWithdrawAmt>upperLimit){
-            cout <<"Invalid entry. Withdraw amount may not exceed your bank account amount."<<endl;
+            cout <<"Invalid entry, withdraw amount may not exceed your bank account amount"<<endl;
+            cout<<"Your current account amount is: $"<<upperLimit<<endl;
             cout <<"Please try again"<<endl;
+            cout<<endl;
+
         } else if(userWithdrawAmt <=0){
-            cout <<"Invalid entry. Withdraw amount must be greater than 0."<<endl;
+            cout <<"Invalid entry, withdraw amount must be greater than 0"<<endl;
             cout <<"Please try again"<<endl;
+            cout<<endl;
         } else{
             cout << "You have withdrawn: $"<<userWithdrawAmt<<endl;
             return userWithdrawAmt;
@@ -64,10 +71,27 @@ float getValue(string userInput, float& upperLimit){
     }
 }
 
+//updates user account to reflect any withdraws
 void calcWithdraw(float& accountBalance, float WithdrawAmt){
     accountBalance = accountBalance - WithdrawAmt;
 }
 
+//obtains credit rating from user
+int getCreditRating(){
+    int userCreditRating;
+    bool run = true;
+    while(run){
+        cout <<"Please enter your credit rating 300-850 (inclusive): "<<endl;
+        cin >> userCreditRating;
+        if(userCreditRating<300 || userCreditRating>850){
+            cout << "Invalid entry, please try again"<<endl;
+        } else{
+            return userCreditRating;
+        }
+    }
+}
+
+//returns interest rate based on user credit score
 float getInterestRate(int creditScore){
     float interestRate;
     if(creditScore <=500){
@@ -84,6 +108,7 @@ float getInterestRate(int creditScore){
     }
 }
 
+//returns loan term based on user input
 int getLoanMonths(){
     float userLoanMonths;
     bool run=true;
@@ -108,20 +133,7 @@ int getLoanMonths(){
     }
 }
 
-int getCreditRating(){
-    int userCreditRating;
-    bool run = true;
-    while(run){
-        cout <<"Please enter your credit rating (300-850): "<<endl;
-        cin >> userCreditRating;
-        if(userCreditRating<300 || userCreditRating>850){
-            cout << "Invalid entry, please try again"<<endl;
-        } else{
-            return userCreditRating;
-        }
-    }
-}
-
+//calculates loan amount
 double calcLoanAmount(double loanPrincipal, double interestRate, double loanTerm){
     double loanAmount;
     double baseNum = (1+interestRate/12);
@@ -130,14 +142,8 @@ double calcLoanAmount(double loanPrincipal, double interestRate, double loanTerm
     return loanAmount;
 }
 
+//outputs summary of user account
 void accountSummary(float& accountAmount){
-    cout << "Account Summary: "<<endl;
-    cout << "$"<<setprecision(2)<<fixed<<accountAmount<<endl;
+    cout << "Account Summary: "<<setw(4)<<"$"<<setprecision(2)<<fixed<<accountAmount<<endl;
     cout<<endl;
 }
-
-
-
-
-
-

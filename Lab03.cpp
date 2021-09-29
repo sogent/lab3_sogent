@@ -8,7 +8,6 @@
 #include <iomanip>
 using namespace std;
 
-//FIXME: make sure the function arguments are being correctly passed
 int main(){
 
     bool run=true;
@@ -20,13 +19,15 @@ int main(){
     int userCreditRating;
     double userLoanTerm;
     double userInterestRate;
+    double userInterestPercent;
     double userLoanPrincipal;
     double userLoan;
     while(run){
 
         userInput=mainMenu();
+        toupper(userInput);
 
-        switch(userInput) {
+        switch(toupper(userInput)) {
 
             case 'D':
                 userDeposit = getValue(getUserInput);
@@ -44,19 +45,23 @@ int main(){
 
             case 'L':
                 userCreditRating= getCreditRating();
-                cout<<userCreditRating;
                 userLoanTerm= getLoanMonths();
                 userInterestRate= getInterestRate(userCreditRating);
                 cout<<"How much would you like to borrow?"<<endl;
                 cin>>userLoanPrincipal;
                 userLoan =calcLoanAmount(userLoanPrincipal, userInterestRate, userLoanTerm);
-                cout<<"Loan Options Review:"<<endl;
-                cout<<"Interest Rate: " <<userInterestRate<<endl;
-                cout<<"Principal: "<<userLoanPrincipal<<endl;
-                cout<<"Loan Monthly Term: "<<userLoanTerm<<endl;
-                cout<<"Your total loan amount is: $"<<setprecision(2)<<fixed<<userLoan<<endl;
+                userInterestPercent=userInterestRate*100;
+                cout<<setw(30)<<"Loan Options Review"<<endl;
+                cout<<"Interest Rate: " <<right<<setw(24)<<userInterestPercent<<"%"<<endl;
+                cout<<"Principal: "<<right<<setw(24)<<"$"<<userLoanPrincipal<<endl;
+                cout<<"Loan Monthly Term: "<<setw(14)<<userLoanTerm<<" months"<<endl;
+                cout<<endl;
+                cout<<"Your total loan amount is: "<<setw(5)<<setprecision(2)<<fixed<<"$"<<userLoan<<endl;
+                cout<<endl;
                 break;
-
+            case 'S':
+                accountSummary(userAccount);
+                break;
             case 'Q':
                 cout<< "Goodbye!"<<endl;
                 run=false;
