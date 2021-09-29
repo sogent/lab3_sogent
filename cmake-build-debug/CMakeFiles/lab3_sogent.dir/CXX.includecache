@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/Users/sogent/CLionProjects/lab3-sogent/checkingmodule.cpp
-checkingmodule.h
-/Users/sogent/CLionProjects/lab3-sogent/checkingmodule.h
+../checkingmodule.h
+string
+-
 iostream
 -
 cmath
@@ -16,10 +16,12 @@ cmath
 iomanip
 -
 
-/Users/sogent/CLionProjects/lab3-sogent/checkingmodule.h
-string
+/Users/sogent/CLionProjects/lab3-sogent/Lab03.cpp
+checkingmodule.h
 -
 iostream
+-
+string
 -
 cmath
 -
