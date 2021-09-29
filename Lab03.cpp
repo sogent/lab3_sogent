@@ -10,23 +10,41 @@ using namespace std;
 int main(){
 
     bool run=true;
-    float currentBalance=0;
+    float userAccount=0;
+    char userInput;
+    float userDeposit;
+    string getUserInput;
+    float withdrawAmount;
     while(run){
 
-        string userChoice;
-        userChoice = mainMenu();
+        userInput=mainMenu();
+        cout << userInput;
 
-        if(userChoice=="D"){
-          currentBalance= (userChoice);
-          //update user balance
+        switch (userInput) {
+
+            case 'D':
+                userDeposit = getValue(getUserInput);
+            deposit(userAccount, userDeposit);
+            cout<<userAccount<<endl;
+
+                break;
+
+            case 'W':
+               withdrawAmount= getValue(getUserInput, userAccount);
+                calcWithdraw(userAccount, withdrawAmount);
+                cout <<userAccount<<endl;
 
 
-        } else if(userChoice=="W") {
-            float currentAmount;
-            currentAmount = getValue(userChoice);
-            getValue(userChoice, currentAmount);
+                break;
+
+            case 'L':
+                break;
+
+            case 'Q':
+                cout<< "Goodbye!"<<endl;
+                run=false;
+
         }
-
 
 
 

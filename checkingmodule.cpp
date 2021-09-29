@@ -5,9 +5,26 @@
 #include <iostream>
 using namespace std;
 
-void deposit(float& userAccount, float userDeposit){
-    //userAccount=userAccount+userDeposit;
+char mainMenu(){
+    char userInput;
+    bool run=true;
+    while(run) {
+        cout << "Main Menu" << endl;
+        cout << "Please enter one of the following: " << endl;
+        cout << "(D)eposit, (W)ithdraw, (L)oan, or (Q)uit: " << endl;
+        cin >> userInput;
+        if(userInput=='D'||userInput=='W'||userInput=='L'||userInput=='Q'){
+            return userInput;
+        } else{
+            cout<<"Invalid entry, please try again"<<endl;
+        }
+
+    }
+}
+
+float getValue(string userInput){
     bool run =true;
+    float userDeposit;
     while(run) {
         cout << "How much would you like to deposit?" << endl;
         cin >> userDeposit;
@@ -15,52 +32,14 @@ void deposit(float& userAccount, float userDeposit){
             cout << "Invalid entry. Amount must be greater than 0. Please try again"<<endl;
         } else{
             cout << "You have deposited: $" << userDeposit<<endl;
-            userAccount=userAccount+userDeposit;
-
-            break;
+            cout <<endl;
+            return userDeposit;
         }
     }
 }
 
-char mainMenu(){
-    char userInput;
-    bool run = true;
-
-    while(run){
-    cout << "Main Menu"<<endl;
-    cout << "Please enter one of the following: "<<endl;
-    cout << "(D)eposit, (W)ithdraw, (L)oan, or (Q)uit: "<<endl;
-    cin >> userInput;
-
-    if(userInput=='D'){
-        return userInput;
-    } else if(userInput=='W'){
-        return userInput;
-    } else if(userInput=='L'){
-        return userInput;
-    } else if(userInput=='Q'){
-        run=false;
-    } else{
-        cout <<"Invalid entry, please try again"<<endl;
-    }
-
-    }
-}
-
-float getValue(string userInput){
-    bool run =true;
-    float userAmount=0;
-
-    while(run) {
-        cout << "How much would you like to deposit?" << endl;
-        cin >> userAmount;
-        if(userAmount < 0){
-            cout << "Invalid entry. Amount must be greater than 0. Please try again"<<endl;
-        } else{
-            cout << "You have deposited: $" << userAmount<<endl;
-            return userAmount;
-        }
-    }
+void deposit(float& userAccount, float userDeposit){
+    userAccount=userAccount+userDeposit;
 }
 
 float getValue(string userInput, float& upperLimit){
@@ -77,7 +56,7 @@ float getValue(string userInput, float& upperLimit){
             cout <<"Invalid entry. Withdraw amount must be greater than 0."<<endl;
             cout <<"Please try again"<<endl;
         } else{
-            cout << "You have withdrawn: $"<<userWithdrawAmt;
+            cout << "You have withdrawn: $"<<userWithdrawAmt<<endl;
             return userWithdrawAmt;
         }
     }
