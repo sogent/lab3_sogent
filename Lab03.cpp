@@ -12,7 +12,7 @@ int main(){
 
     bool run=true;
     float userAccount=0;
-    char userInput;
+    char userInput1, userInput;
     float userDeposit;
     string getUserInput;
     float withdrawAmount;
@@ -24,10 +24,10 @@ int main(){
     double userLoan;
     while(run){
 
-        userInput=mainMenu();
-        toupper(userInput);
+        userInput1=mainMenu();
+        userInput= toupper(userInput1);
 
-        switch(toupper(userInput)) {
+        switch(userInput) {
 
             case 'D':
                 userDeposit = getValue(getUserInput);

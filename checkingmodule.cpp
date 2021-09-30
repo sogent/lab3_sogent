@@ -9,16 +9,19 @@ using namespace std;
 
 //main menu function
 char mainMenu(){
-    char userInput;
+    char userInput1, userInput;
     bool run=true;
     while(run) {
+
         cout <<right<<setw(20)<< "Main Menu" << endl;
         cout << "Please enter one of the following: " << endl;
         cout << "(D)eposit, (W)ithdraw, (L)oan, (S)ummary of Account, or (Q)uit: " << endl;
-        cin >> userInput;
-        toupper(userInput);
+
+        cin >> userInput1;
+        userInput= toupper(userInput1);
         if(userInput=='D'||userInput=='W'||userInput=='L'||userInput=='S'||userInput=='Q'){
-            return toupper(userInput);
+
+            return userInput;
         } else{
             cout<<"Invalid entry, please try again"<<endl;
         }
